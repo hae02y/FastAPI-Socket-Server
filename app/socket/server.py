@@ -2,7 +2,7 @@ import socket, os
 from threading import Thread
 from app.service.packet_parser_service import parse_packet
 
-LISTEN_PORT = os.environ.get('LISTEN_PORT')
+LISTEN_PORT = 5448
 
 def handle_client(conn, addr):
     with conn:
