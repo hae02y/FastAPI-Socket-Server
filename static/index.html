@@ -1,22 +1,31 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <title>🅿️ CCM Polygon Viewer</title>
-  <link rel="stylesheet" href="/static/style.css" />
+    <meta charset="UTF-8"/>
+    <title>🅿️ CCM Polygon Viewer</title>
+    <link rel="stylesheet" href="/static/style.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 </head>
 <body>
-  <label for="ccmSelect">CCM 선택:</label>
-  <select id="ccmSelect">
-    <option value="0">CCM 0</option>
+
+<span>
+    <label for="ccmSelect">CCM 선택</label>
+<select id="ccmSelect">
     <option value="1">CCM 1</option>
     <option value="2">CCM 2</option>
-  </select>
-  <div id="count">면개수 : </div>
-   <div id="finish-count">완료 면개수 : </div>
+    <option value="3">CCM 3</option>
+</select>
+</span>
+<button id="exportExcelBtn" style="margin-left: 100px">Excel 저장</button>
+<div>
+    <span>면개수 : </span> <span id="count" style="font-weight:bold"></span>
+</div>
+<div>
+    <span>완료 면개수 : </span> <span id="finish-count" style="font-weight:bold"></span>
+</div>
 
-  <canvas id="polygonCanvas"></canvas>
-
-  <script src="/static/script.js"></script>
+<canvas id="polygonCanvas"></canvas>
+<div id="tooltip"></div>
+<script src="/static/script.js"></script>
 </body>
 </html>

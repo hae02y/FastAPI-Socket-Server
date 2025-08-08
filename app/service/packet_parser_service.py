@@ -23,13 +23,6 @@ def parse_packet(data: bytes):
         0x84: "만차3"
     }
 
-    status_summary = {
-        "비어있음": 0,
-        "출입 중": 0,
-        "차량 있음": 0,
-        "알 수 없음": 0
-    }
-
     dport_ccm = {
         7891:1,
         7892:2,
@@ -39,7 +32,6 @@ def parse_packet(data: bytes):
     status_list = []
     for i, b in enumerate(usm_filtered):
         status = status_map.get(b, "알 수 없음")
-        status_summary[status] += 1
         status_list.append({
             "index": i + 1,
             "hex": f"{b:#04x}",
@@ -48,10 +40,9 @@ def parse_packet(data: bytes):
 
     return {
         "header": header.hex(),
-        "ccm_num": dport_ccm[dport],
+        "ccm_num": dport_ccm.get(dport, -1),
         "scm_num": scm_num,
         # "usm_list_length": len(usm_list),
         "usm_length": len(usm_filtered),
-        "status_summary": status_summary,
         "status_details": status_list
     }
