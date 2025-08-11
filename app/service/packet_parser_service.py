@@ -16,12 +16,13 @@ def parse_packet(data: bytes):
 
     # 상태별 분류
     status_map = {
-        0x80: "공차",
-        0x81: "만차",
-        0x82: "만차1",
-        0x83: "만차2",
-        0x84: "만차3"
+        0x80: "NORM",
+        0x81: "PARK",
+        0x82: "PARK",
+        0x83: "PARK",
+        0x84: "PARK"
     }
+
 
     dport_ccm = {
         7891:1,
@@ -31,7 +32,7 @@ def parse_packet(data: bytes):
 
     status_list = []
     for i, b in enumerate(usm_filtered):
-        status = status_map.get(b, "알 수 없음")
+        status = status_map.get(b, "NONE")
         status_list.append({
             "index": i + 1,
             "hex": f"{b:#04x}",

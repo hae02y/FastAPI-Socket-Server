@@ -4,9 +4,9 @@ import time
 import requests
 from app.service.status_store_service import get_recent_status
 
-ENABLE = False
-SEND_INTERVAL = 1  # seconds
-TARGET_API_URL = "http://your-api-server.com/api/update-status"
+ENABLE = True
+SEND_INTERVAL = 10  # seconds
+TARGET_API_URL = "http://3.36.66.196:8082/gateway/PKL2507310000001/slots"
 
 def send_statuses():
     while True:
@@ -16,9 +16,14 @@ def send_statuses():
         if not data:
             continue
 
+        headers = {
+            "Content-Type": "application/json",
+            "Authorization" : "Key"
+        }
+
         try:
-            response = requests.post(TARGET_API_URL, json=data)
-            print(f"[전송됨] {len(data)}건 / 응답: {response.status_code}")
+            response = requests.put(TARGET_API_URL, headers=headers ,json=data)
+            print(f"[전송됨] {len(data)}건 / 응답: {response.text}")
         except Exception as e:
             print(f"[에러] 상태 전송 실패: {e}")
 
